@@ -41,8 +41,26 @@ var pickaxeLevel = WOODEN_PICKAXE;
 const anvilMenuElement = document.getElementById("anvil-menu");
 function openAnvil() {
   for (let resource in anvilResources) {
-    let resourceCraft = document.getElementById("anvil-craft-template");
-    resourceCraft.querySelector()
+    let resourceCraft = document.getElementById("anvil-craft-template").content.cloneNode(true);
+    console.log(resourceCraft);
+
+    resourceCraft.querySelector(".anvil-craft-name").innerHTML = resource;
+    resourceCraft.querySelector(".anvil-craft-cost").innerHTML = anvilResources[resource].cost;
+    resourceCraft.querySelector(".anvil-craft-type").innerHTML = anvilResources[resource].type;
+
+    let craftButton = resourceCraft.querySelector(".anvil-craft-button");
+    if (anvilResources[resource].level == pickaxeLevel + 1 &&
+      resourceAmounts[resource] >= anvilResources[resource].cost) {
+      craftButton.disabled = false;
+      craftButton.innerText = "Craft";
+
+      craftButton.addEventListener("click", () => {
+        pickaxeLevel = Math.max(pickaxeLevel, anvilResources[resource].level);
+        anvilMenuElement.close();
+      });
+    }
+
+    document.getElementById("anvil-grid").append(resourceCraft)
   }
 
   anvilMenuElement.showModal();
