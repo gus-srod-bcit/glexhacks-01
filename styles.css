@@ -1,8 +1,47 @@
+:root
+{
+    --stone: #888888;
+    --iron: #c7a68d;
+    --gold: #FFCC00;
+    --diamond: #00CCFF;
+}
+
+* 
+{
+    margin: 0px;
+    padding: 0px;
+}
+
 #game-window {
   background-color: black;
-  display: block;
+  display: absolute;
   width: 1080px;
   height: 1080px;
+}
+
+body
+{
+    background-color: #CCCCCC;
+}
+
+.stone
+{
+    background-color: var(--stone);
+}
+
+.iron
+{
+    background-color: var(--iron);
+}
+
+.gold
+{
+    background-color: var(--gold);
+}
+
+.diamond
+{
+    background-color: var(--diamond);
 }
 
 .resource {
@@ -17,4 +56,22 @@
   display: block;
   width: 100px;
   height: 100px;
+}
+
+#minerals
+{
+    background-color: red;
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    align-items: stretch;
+
+    width: 100%;
+    height: 100%;
+}
+
+#minerals > *
+{
+    width: 100%;
+    height: 100%;
 }
