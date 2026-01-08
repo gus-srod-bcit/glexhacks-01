@@ -67,7 +67,7 @@ function openAnvil() {
 }
 
 document.getElementById("anvil-open-button").addEventListener("click", openAnvil)
-document.getElementById("anvil-close-button").addEventListener("click", anvilMenuElement.close)
+document.getElementById("anvil-close-button").addEventListener("click", () => { anvilMenuElement.close() })
 
 // Anvil End
 
@@ -89,3 +89,5 @@ function gainResource(event) {
 }
 
 document.addEventListener("click", gainResource);
+
+// Mining End
