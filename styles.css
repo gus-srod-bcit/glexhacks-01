@@ -1,0 +1,13 @@
+#game-window {
+  background-color: black;
+  display: block;
+  width: 1080px;
+  height: 1080px;
+}
+
+.resource {
+  background-color: blue;
+  display: block;
+  width: 100px;
+  height: 100px;
+}
