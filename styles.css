@@ -4,6 +4,8 @@
     --iron: #c7a68d;
     --gold: #FFCC00;
     --diamond: #00CCFF;
+
+    --bg: #BBBBBB;
 }
 
 * 
@@ -18,11 +20,17 @@ body
 }
 
 #game-window {
-  background-color: black;
+  background-color: var(--bg);
   position: absolute;
   display: block;
-  width: 1080px;
-  height: 1080px;
+
+  left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto; 
+
+  width: 1280px;
+  height: 720px;
 }
 
 body
@@ -57,8 +65,8 @@ body
   height: 100px;
 }
 
-#anvil-open-button {
-  background-color: gray;
+#anvil-open-button
+{
   display: block;
   width: 100px;
   height: 100px;
@@ -91,4 +99,11 @@ body
     font-size: 1.5em;
 
     margin: 0px 0.5em;
+}
+
+#anvil-open-button
+{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
 }
