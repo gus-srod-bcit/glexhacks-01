@@ -40,6 +40,7 @@ var pickaxeLevel = WOODEN_PICKAXE;
 // Anvil Start
 const anvilMenuElement = document.getElementById("anvil-menu");
 function openAnvil() {
+  document.getElementById("anvil-grid").innerHTML = "";
   for (let resource in anvilResources) {
     let resourceCraft = document.getElementById("anvil-craft-template").content.cloneNode(true);
     console.log(resourceCraft);
