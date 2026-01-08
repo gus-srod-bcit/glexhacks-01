@@ -12,9 +12,15 @@
     padding: 0px;
 }
 
+body
+{
+    font-family: monospace;
+}
+
 #game-window {
   background-color: black;
-  display: absolute;
+  position: absolute;
+  display: block;
   width: 1080px;
   height: 1080px;
 }
@@ -67,11 +73,22 @@ body
     align-items: stretch;
 
     width: 100%;
-    height: 100%;
+    height: 40px;
 }
 
-#minerals > *
+.mineral
 {
     width: 100%;
     height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mineral-amount
+{
+    font-size: 1.5em;
+
+    margin: 0px 0.5em;
 }
