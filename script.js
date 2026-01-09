@@ -3,7 +3,12 @@ const STONE_PICKAXE = 1;
 const IRON_PICKAXE = 2;
 const GOLD_PICKAXE = 3;
 const DIAMOND_PICKAXE = 4;
+const WINNER = 5
 
+const PICKAXE_LEVELS = ["wood", "stone", "iron", "gold", "diamond", "winner"];
+
+
+// Resources
 var anvilResources = {
   stone: {
     level: STONE_PICKAXE,
@@ -17,12 +22,12 @@ var anvilResources = {
   },
   gold: {
     level: GOLD_PICKAXE,
-    cost: 20,
+    cost: 40,
     type: "gold"
   },
   diamond: {
     level: DIAMOND_PICKAXE,
-    cost: 20,
+    cost: 80,
     type: "diamond"
   },
 };
@@ -34,7 +39,17 @@ var resourceAmounts = {
   diamond: 0
 };
 
+function updateResourceAmount(resource, amount) {
+  resourceAmounts[resource] = amount;
+  var _resourceAmountElement = document.getElementById(`${resource}-amount`);
+  _resourceAmountElement.innerHTML = resourceAmounts[resource];
+}
+// Resources End
+
+// Level
 var pickaxeLevel = WOODEN_PICKAXE;
+
+// Level End
 
 
 // Anvil Start
@@ -55,8 +70,26 @@ function openAnvil() {
       craftButton.disabled = false;
       craftButton.innerText = "Craft";
 
+      // Level Up
       craftButton.addEventListener("click", () => {
+        // Reduce resources
+        updateResourceAmount(
+          resource,
+          resourceAmounts[resource] - anvilResources[resource].cost
+        )
+
+        // Change Resource getting mined
+        const resourceElement = document.querySelector(".resource");
+        resourceElement.classList.remove(resource);
+
+        // Change pickaxe level
         pickaxeLevel = Math.max(pickaxeLevel, anvilResources[resource].level);
+
+        // Change Resource getting mined
+        const nextResourceToMine = PICKAXE_LEVELS[pickaxeLevel + 1]
+        resourceElement.classList.add(nextResourceToMine);
+        resourceElement.querySelector("p").innerText = nextResourceToMine;
+
         anvilMenuElement.close();
       });
     }
@@ -78,12 +111,12 @@ function gainResource(event) {
   var _resourceElement = event.target.closest(".resource");
   if (!_resourceElement) return;
 
-
   for (let resource in resourceAmounts) {
     if (_resourceElement.classList.contains(resource)) {
-      resourceAmounts[resource] += 1;
-      var _resourceAmountElement = document.getElementById(`${resource}-amount`)
-      _resourceAmountElement.innerHTML = resourceAmounts[resource];
+      updateResourceAmount(
+        resource,
+        resourceAmounts[resource] + 1
+      );
       return;
     }
   }
