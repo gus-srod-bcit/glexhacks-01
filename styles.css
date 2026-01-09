@@ -58,11 +58,16 @@ body
     background-color: var(--diamond);
 }
 
-.resource {
-  background-color: blue;
-  display: block;
-  width: 100px;
-  height: 100px;
+.resource
+{
+  height: 50%;
+  aspect-ratio: 1;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  margin: auto;
 }
 
 #anvil-open-button
