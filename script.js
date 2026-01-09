@@ -12,22 +12,22 @@ const PICKAXE_LEVELS = ["wood", "stone", "iron", "gold", "diamond", "winner"];
 var anvilResources = {
   stone: {
     level: STONE_PICKAXE,
-    cost: 10,
+    cost: 1,
     type: "stone"
   },
   iron: {
     level: IRON_PICKAXE,
-    cost: 20,
+    cost: 2,
     type: "iron"
   },
   gold: {
     level: GOLD_PICKAXE,
-    cost: 40,
+    cost: 4,
     type: "gold"
   },
   diamond: {
     level: DIAMOND_PICKAXE,
-    cost: 80,
+    cost: 8,
     type: "diamond"
   },
 };
@@ -50,6 +50,30 @@ function updateResourceAmount(resource, amount) {
 // #region Level
 var pickaxeLevel = WOODEN_PICKAXE;
 
+function checkWin() {
+  console.log(pickaxeLevel);
+
+  if (pickaxeLevel + 1 == WINNER) {
+    window.location.href = "win.html";
+  }
+}
+
+function levelUpPickaxe() {
+  const resourceElement = document.querySelector(".resource");
+  const currentResourceMined = PICKAXE_LEVELS[pickaxeLevel + 1];
+  resourceElement.classList.remove(currentResourceMined);
+
+  // Change pickaxe level
+  pickaxeLevel = Math.max(pickaxeLevel, pickaxeLevel + 1);
+  // Check win
+  checkWin();
+
+
+  // Change Resource getting mined
+  const nextResourceToMine = PICKAXE_LEVELS[pickaxeLevel + 1];
+  resourceElement.classList.add(nextResourceToMine);
+  resourceElement.querySelector("img").src = `./sprites/minerals/${nextResourceToMine}.png`;
+}
 // #endregion Level
 
 // #region Anvil Start
@@ -58,7 +82,6 @@ function openAnvil() {
   document.getElementById("anvil-grid").innerHTML = "";
   for (let resource in anvilResources) {
     let resourceCraft = document.getElementById("anvil-craft-template").content.cloneNode(true);
-    console.log(resourceCraft);
 
     resourceCraft.querySelector(".anvil-craft-name").innerHTML = resource;
     resourceCraft.querySelector(".anvil-craft-cost").innerHTML = anvilResources[resource].cost;
@@ -76,19 +99,9 @@ function openAnvil() {
         updateResourceAmount(
           resource,
           resourceAmounts[resource] - anvilResources[resource].cost
-        )
+        );
 
-        // Change Resource getting mined
-        const resourceElement = document.querySelector(".resource");
-        resourceElement.classList.remove(resource);
-
-        // Change pickaxe level
-        pickaxeLevel = Math.max(pickaxeLevel, anvilResources[resource].level);
-
-        // Change Resource getting mined
-        const nextResourceToMine = PICKAXE_LEVELS[pickaxeLevel + 1]
-        resourceElement.classList.add(nextResourceToMine);
-        resourceElement.querySelector("p").innerText = nextResourceToMine;
+        levelUpPickaxe();
 
         anvilMenuElement.close();
       });
