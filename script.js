@@ -8,7 +8,7 @@ const WINNER = 5
 const PICKAXE_LEVELS = ["wood", "stone", "iron", "gold", "diamond", "winner"];
 
 
-// Resources
+// #region Resources
 var anvilResources = {
   stone: {
     level: STONE_PICKAXE,
@@ -44,15 +44,15 @@ function updateResourceAmount(resource, amount) {
   var _resourceAmountElement = document.getElementById(`${resource}-amount`);
   _resourceAmountElement.innerHTML = resourceAmounts[resource];
 }
-// Resources End
 
-// Level
+// #endregion Resources
+
+// #region Level
 var pickaxeLevel = WOODEN_PICKAXE;
 
-// Level End
+// #endregion Level
 
-
-// Anvil Start
+// #region Anvil Start
 const anvilMenuElement = document.getElementById("anvil-menu");
 function openAnvil() {
   document.getElementById("anvil-grid").innerHTML = "";
@@ -103,10 +103,9 @@ function openAnvil() {
 document.getElementById("anvil-open-button").addEventListener("click", openAnvil)
 document.getElementById("anvil-close-button").addEventListener("click", () => { anvilMenuElement.close() })
 
-// Anvil End
+// #endregion Anvil
 
-
-// Mining Start
+// #region Mining Start
 function gainResource(event) {
   var _resourceElement = event.target.closest(".resource");
   if (!_resourceElement) return;
@@ -124,4 +123,4 @@ function gainResource(event) {
 
 document.addEventListener("click", gainResource);
 
-// Mining End
+// #endregion Mining
