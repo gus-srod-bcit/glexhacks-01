@@ -38,22 +38,22 @@ body
     background-color: #CCCCCC;
 }
 
-.stone
+.stone-bg
 {
     background-color: var(--stone);
 }
 
-.iron
+.iron-bg
 {
     background-color: var(--iron);
 }
 
-.gold
+.gold-bg
 {
     background-color: var(--gold);
 }
 
-.diamond
+.diamond-bg
 {
     background-color: var(--diamond);
 }
